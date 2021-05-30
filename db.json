@@ -1,0 +1,61 @@
+{
+  "home": [
+    {
+      "id": 1,
+      "sensor": "suhu",
+      "value": 29
+    },
+    {
+      "id": 2,
+      "sensor": "cahaya",
+      "value": 22
+    },
+    {
+      "id": 3,
+      "sensor": "tanah",
+      "value": 12
+    },
+    {
+      "id": 4,
+      "sensor": "lembab",
+      "value": 11
+    }
+  ],
+  "journal": [
+    {
+      "title": "asdf",
+      "description": "asdf",
+      "id": 1
+    },
+    {
+      "title": "sss",
+      "description": "asdfdddd",
+      "id": 2
+    },
+    {
+      "title": "asdf",
+      "description": "a",
+      "id": 3
+    },
+    {
+      "title": "buku",
+      "description": "dfdf",
+      "id": 4
+    },
+    {
+      "title": "asdadasd",
+      "description": "asddddasd asdokaksdokaosd asdoaksodkaoskd asdasd",
+      "id": 5
+    },
+    {
+      "title": "jadi gini bos",
+      "description": "apartment apartment pasfsfs sfsf sd",
+      "id": 6
+    },
+    {
+      "title": "ngentno",
+      "description": "jasdof fsdofkaokdsf asdfkoasdkdf wkeorkwoekrowe wkeowkowokwowk kowkowkow wkowkwowkw kowkowkow wkowkwowkw kowkowkow wkowkwokwow",
+      "id": 7
+    }
+  ]
+}
