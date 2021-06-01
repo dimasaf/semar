@@ -26,7 +26,7 @@ const Log = () => {
       <LineChart
         data={data}
         width={screenWidth} // from react-native
-        height={220}
+        height={200}
         yAxisLabel="$"
         yAxisSuffix="k"
         yAxisInterval={1} // optional, defaults to 1
