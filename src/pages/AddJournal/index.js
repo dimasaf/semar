@@ -1,25 +1,23 @@
 import React from 'react';
-import {StyleSheet, Button} from 'react-native';
-import {Layout, Input} from '@ui-kitten/components';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Layout, Input, Text, styled} from '@ui-kitten/components';
+import BackButton from '../../components/BackButton/';
+
 import axios from 'axios';
 
-const Index = () => {
+const Index = ({navigation}) => {
   const [title, setTitle] = React.useState('');
   const [description, setDescription] = React.useState('');
 
-  const ID = function () {
-    return '_' + Math.random().toString(36).substr(2, 9);
-  };
-
   const submit = async () => {
     const data = {
-      id: ID,
       title,
       description,
     };
     try {
       const response = await axios.post('http://10.0.2.2:3000/journal', data);
       console.log(response.data);
+      // alert('sukses');
     } catch (e) {
       console.log(e);
     }
@@ -27,21 +25,32 @@ const Index = () => {
 
   return (
     <Layout style={styles.container}>
+      <View style={styles.header}>
+        <BackButton onPress={() => navigation.goBack()} />
+        <TouchableOpacity style={styles.btn} onPress={submit}>
+          <Text>Save</Text>
+        </TouchableOpacity>
+      </View>
+
       <Input
-        placeholder="your title here"
+        placeholder="Title "
         style={styles.title}
+        textStyle={{
+          fontSize: 20,
+          minHeight: 52,
+        }}
         value={title}
         onChangeText={(nextValue) => setTitle(nextValue)}
       />
       <Input
+        placeholder="Type something .."
         multiline={true}
         style={styles.title}
-        textStyle={{minHeight: 124}}
-        placeholder="Description"
+        textStyle={{minHeight: 200, fontSize: 18}}
         value={description}
         onChangeText={(nextValue) => setDescription(nextValue)}
       />
-      <Button onPress={submit} title="Learn More" style={styles.title} />
+      {/* <Button onPress={submit} title="Submit" style={styles.btn} /> */}
     </Layout>
   );
 };
@@ -54,6 +63,20 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 24,
+    marginHorizontal: 14,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginTop: 20,
     marginHorizontal: 12,
+  },
+  btn: {
+    backgroundColor: '#233e8b',
+    paddingVertical: 16,
+    paddingHorizontal: 36,
+    borderRadius: 12,
   },
 });

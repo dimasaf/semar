@@ -1,16 +1,19 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Layout, Text} from '@ui-kitten/components';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
 
 const Setting = () => {
+  const [button, setButton] = React.useState('OFF');
+
   return (
     <Layout style={styles.contentContainer}>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.text}>OFF</Text>
+      <TouchableOpacity
+        uchableOpacity
+        style={styles.button}
+        onPress={() => {
+          setButton(!setButton ? 'OFF' : 'ON');
+        }}>
+        <Text style={styles.text}>{button}</Text>
       </TouchableOpacity>
     </Layout>
   );

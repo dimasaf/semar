@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Home, Journal, Log, Setting, AddJournal} from '../pages';
+import {Home, Journal, Log, Setting, AddJournal, DetailJournal} from '../pages';
 import {BottomNavigator} from '../components';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 
@@ -15,7 +15,6 @@ const stackNav = () => {
         component={Journal}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Add" component={AddJournal} />
     </Stack.Navigator>
   );
 };
@@ -27,6 +26,8 @@ const Router = () => {
       <Tab.Screen name="Daily Log" component={Log} />
       <Tab.Screen name="Journal" component={stackNav} />
       <Tab.Screen name="Setting" component={Setting} />
+      <Tab.Screen name="Detail" component={DetailJournal} />
+      <Tab.Screen name="Add" component={AddJournal} />
     </Tab.Navigator>
   );
 };

@@ -1,31 +1,18 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useEffect} from 'react';
-import {StyleSheet, View, TouchableOpacity, FlatList} from 'react-native';
+import {StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {Layout, Text} from '@ui-kitten/components';
+import {Content} from '../../components/index';
 import axios from 'axios';
 
-const Content = ({item}) => {
-  return (
-    <View style={styles.content}>
-      <View>
-        <Text style={{color: 'white', fontSize: 24, padding: 6}}>
-          {item.title}
-        </Text>
-        <Text style={{color: 'white', padding: 6, overflow: 'hidden'}}>
-          {item.description}
-        </Text>
-      </View>
-    </View>
-  );
-};
-
 const Journal = ({navigation}) => {
-  const [data, setData] = React.useState([]);
+  const [notes, setNotes] = React.useState([]);
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://10.0.2.2:3000/journal');
-      setData(response.data);
-      // console.log(response);
+      const response = await axios.get('http://10.0.2.2:3000/journals');
+      setNotes(response.data.journals);
+      // console.log(notes);
     } catch (error) {
       console.log(error);
     }
@@ -33,23 +20,34 @@ const Journal = ({navigation}) => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [notes]);
 
   return (
     <Layout style={styles.container}>
-      <Text>Journal</Text>
-
-      <FlatList
-        data={data}
-        renderItem={Content}
-        keyExtractor={(item) => String(item.id)}
-      />
-
-      {/* {users.map((d) => {
-        return <Text>{d.title}</Text>;
-      })} */}
+      <Text category="h4" style={styles.title}>
+        Journal
+      </Text>
 
       {/* <Text style={styles.text}>No Journal yet</Text> */}
+      <FlatList
+        data={notes}
+        keyExtractor={(item) => String(item._id)}
+        renderItem={(itemData) => (
+          <Content
+            title={itemData.item.title}
+            createdAt={itemData.item.createdAt}
+            onPress={() =>
+              navigation.navigate('Detail', {
+                desc: itemData.item.description,
+                date: itemData.item.createdAt,
+                itemId: itemData.item._id,
+                title: itemData.item.title,
+              })
+            }
+          />
+        )}
+      />
+
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
@@ -67,6 +65,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+  },
+  title: {
+    alignSelf: 'center',
+    paddingVertical: 12,
   },
   text: {
     alignSelf: 'center',
@@ -96,12 +98,12 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
-
     elevation: 10,
-
     backgroundColor: '#02142b',
     borderRadius: 10,
     margin: 20,
-    height: 100,
+    padding: 20,
+    height: 120,
+    justifyContent: 'space-between',
   },
 });

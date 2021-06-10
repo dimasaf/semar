@@ -12,35 +12,35 @@ import {io} from 'socket.io-client';
 
 import {ThemeContext} from '../../Theme/';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 const Home = () => {
   const socket = io.connect('http://10.0.2.2:3000');
 
   const themeContext = React.useContext(ThemeContext);
   const [activeChecked, setActiveChecked] = React.useState({});
+  // const [data, setData] = React.useState([]);
 
-  const [data, setData] = React.useState([]);
   const [tempperature, setTempperature] = React.useState();
   const [humadinity, setHumadinity] = React.useState();
   const [soilmoinsture, setSoilMoinsture] = React.useState();
   const [lightSensor, setLightSensor] = React.useState();
 
-  const getData = async () => {
-    try {
-      const response = await axios.get('http://10.0.2.2:3000/dashboard');
-      setData(response.data);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getData = async () => {
+  //   try {
+  //     const response = await axios.get('http://10.0.2.2:3000/dashboard');
+  //     setData(response.data);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   React.useEffect(() => {
     // getData();
 
     socket.on('data', (data) => {
-      setTempperature(data.Tempperature);
+      setTempperature(data.Temperature);
       setHumadinity(data.Humidinity);
       setSoilMoinsture(data.SoilMoinsture);
       setLightSensor(data.LightSensor);

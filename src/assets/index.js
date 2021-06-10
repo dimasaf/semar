@@ -14,3 +14,7 @@ export const SettingIcon = (props) => (
 );
 
 export const AirIcon = (props) => <Icon {...props} name="air" pack="assets" />;
+
+export const BackIcon = (props) => (
+  <Icon {...props} name="back" pack="assets" />
+);

@@ -15,5 +15,6 @@ export const AssetIconsPack = {
     log: IconProvider(require('../icons/log.png')),
     setting: IconProvider(require('../icons/setting.png')),
     air: IconProvider(require('../icons/air.png')),
+    back: IconProvider(require('../icons/back.png')),
   },
 };
