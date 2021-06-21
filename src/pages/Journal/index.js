@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {Layout, Text} from '@ui-kitten/components';
 import {Content} from '../../components/index';
@@ -18,9 +18,9 @@ const Journal = ({navigation}) => {
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     getData();
-  }, [notes]);
+  });
 
   return (
     <Layout style={styles.container}>

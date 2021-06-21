@@ -1,23 +1,47 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, Dimensions} from 'react-native';
 import {Layout, Text} from '@ui-kitten/components';
 import {LineChart} from 'react-native-chart-kit';
 import {ScrollView} from 'react-native-gesture-handler';
-import {axios} from 'axios';
+import axios from 'axios';
 
 const Log = () => {
+  const [results, setResult] = React.useState([]);
+  const [avgHum, setAvgHum] = React.useState({});
+
+  const screenWidth = Dimensions.get('window').width;
+
+  const getData = async () => {
+    try {
+      let response = await axios.get('http://10.0.2.2:3000/home');
+      let json = response.data;
+      setResult(json.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  let hump = results.map((item) => {
+    return item.avgHum;
+  });
+  let humpId = results.map((item) => {
+    return item._id;
+  });
+  let temp = results.map((item) => {
+    return item.avgTemp;
+  });
+  let soil = results.map((item) => {
+    return item.avgSoil;
+  });
+  let light = results.map((item) => {
+    return item.avgLight;
+  });
+
   const data = {
-    labels: [],
+    labels: humpId,
     datasets: [
       {
-        data: [
-          Math.floor(Math.random() * 100),
-          Math.floor(Math.random() * 100),
-          Math.floor(Math.random() * 100),
-          Math.floor(Math.random() * 100),
-          Math.floor(Math.random() * 100),
-          Math.floor(Math.random() * 100),
-        ],
+        data: hump,
         color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
         strokeWidth: 2, // optional
       },
@@ -25,7 +49,10 @@ const Log = () => {
     legend: ['Tempperature /day'], // optional
   };
 
-  const screenWidth = Dimensions.get('window').width;
+  React.useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Layout style={styles.container}>
@@ -61,7 +88,7 @@ const Log = () => {
             borderRadius: 16,
           }}
         />
-        <LineChart
+        {/* <LineChart
           data={data}
           width={screenWidth} // from react-native
           height={200}
@@ -144,7 +171,7 @@ const Log = () => {
             margin: 8,
             borderRadius: 16,
           }}
-        />
+        /> */}
       </ScrollView>
     </Layout>
   );

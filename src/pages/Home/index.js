@@ -26,16 +26,6 @@ const Home = () => {
   const [soilmoinsture, setSoilMoinsture] = React.useState();
   const [lightSensor, setLightSensor] = React.useState();
 
-  // const getData = async () => {
-  //   try {
-  //     const response = await axios.get('http://10.0.2.2:3000/dashboard');
-  //     setData(response.data);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   React.useEffect(() => {
     // getData();
 
