@@ -7,9 +7,10 @@ import axios from 'axios';
 
 const Log = () => {
   const [results, setResult] = React.useState([]);
-  const [avgHum, setAvgHum] = React.useState({});
 
   const screenWidth = Dimensions.get('window').width;
+
+  // 192.168.0.38
 
   const getData = async () => {
     try {
